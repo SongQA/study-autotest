@@ -20,6 +20,7 @@ fun main() {
             println("유효한 숫자를 입력해 주세요.")
         }
     }
+    // 테스트
 
     // 구구단 출력
     println("$number 단:")
