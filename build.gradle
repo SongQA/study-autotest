@@ -11,3 +11,9 @@ tasks.register('runMultiplicationTable', JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
     standardInput = System.in
 }
+
+tasks.register('runMinAndMax', JavaExec) {
+    mainClass.set('MinAndMaxKt')
+    classpath = sourceSets.main.runtimeClasspath
+    standardInput = System.in
+}
