@@ -11,11 +11,6 @@ dependencies {
     testImplementation 'org.testng:testng:7.8.0'
 }
 
-test {
-    useJUnitPlatform()
-    useTestNG()
-}
-
 tasks.register('runMultiplicationTable', JavaExec) {
     mainClass.set('MainKt')
     classpath = sourceSets.main.runtimeClasspath
@@ -26,4 +21,21 @@ tasks.register('runMinAndMax', JavaExec) {
     mainClass.set('MinAndMaxKt')
     classpath = sourceSets.main.runtimeClasspath
     standardInput = System.in
+}
+
+tasks.register('testMinAndMaxWithXml', Test) {
+    useTestNG {
+        suites 'src/test/resources/test-min-and-max.xml'
+    }
+    afterSuite { desc, result ->
+        if (!desc.parent) {
+            def output = "Results: \u001B[1m${result.resultType}\u001B[0m (${result.testCount} scenarios, " +
+                    "${result.successfulTestCount} \u001B[0;32mpassed\u001B[0m, " +
+                    "${result.failedTestCount} \u001B[0;31mfailed\u001B[0m, " +
+                    "${result.skippedTestCount} \u001B[0;33mskipped\u001B[0m)"
+            def startItem = '🤖  '
+            def repeatLength = startItem.length() + output.length() - 40
+            println('\n' + ('-' * repeatLength) + '\n\n' + startItem + output + '\n\n' + ('-' * repeatLength))
+        }
+    }
 }
