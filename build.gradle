@@ -6,6 +6,16 @@ repositories {
     mavenCentral()
 }
 
+dependencies {
+    testImplementation 'org.jetbrains.kotlin:kotlin-test'
+    testImplementation 'org.testng:testng:7.8.0'
+}
+
+test {
+    useJUnitPlatform()
+    useTestNG()
+}
+
 tasks.register('runMultiplicationTable', JavaExec) {
     mainClass.set('MainKt')
     classpath = sourceSets.main.runtimeClasspath
