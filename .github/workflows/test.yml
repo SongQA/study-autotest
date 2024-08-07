@@ -1,4 +1,4 @@
-name: [Test] Test Task
+name: Test Task
 
 on:
   pull_request:
