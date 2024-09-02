@@ -1,3 +1,4 @@
+import io.appium.java_client.AppiumBy
 import io.appium.java_client.android.AndroidDriver
 import io.appium.java_client.remote.options.BaseOptions
 import org.testng.annotations.AfterMethod
@@ -6,7 +7,7 @@ import org.testng.annotations.Test
 import java.net.MalformedURLException
 import java.net.URL
 
-class SampleTest {
+class AndroidSetup {
 
     private lateinit var driver: AndroidDriver
 
@@ -38,7 +39,19 @@ class SampleTest {
 
     @Test
     fun sampleTest() {
-        Thread.sleep(10000)
+        driver.findElement(AppiumBy.xpath("//*[@text='App']")).click()
+        driver.findElement(AppiumBy.xpath("//*[@text='Activity']")).click()
+        driver.findElement(AppiumBy.xpath("//*[@text='Custom Title']")).click()
+
+        driver.findElement(AppiumBy.id("left_text_edit")).clear()
+        driver.findElement(AppiumBy.id("left_text_edit")).sendKeys("Hello, World!")
+        driver.findElement(AppiumBy.id("left_text_button")).click()
+        assert(driver.findElement(AppiumBy.id("left_text")).text == "Hello, World!")
+
+        driver.findElement(AppiumBy.id("right_text_edit")).clear()
+        driver.findElement(AppiumBy.id("right_text_edit")).sendKeys("Hello, World!")
+        driver.findElement(AppiumBy.id("right_text_button")).click()
+        assert(driver.findElement(AppiumBy.id("right_text")).text == "Hello, World!")
     }
 
     @AfterMethod

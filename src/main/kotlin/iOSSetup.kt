@@ -1,12 +1,11 @@
 import io.appium.java_client.ios.IOSDriver
 import io.appium.java_client.remote.options.BaseOptions
-import org.openqa.selenium.WebDriver
+import org.openqa.selenium.By
 import org.testng.annotations.AfterMethod
 import org.testng.annotations.BeforeMethod
 import org.testng.annotations.Test
 import java.net.MalformedURLException
 import java.net.URL
-import java.time.Duration
 
 class iOSSetup {
 
@@ -38,7 +37,10 @@ class iOSSetup {
 
     @Test
     fun sampleTest() {
-        Thread.sleep(10000)
+        driver.findElement(By.name("IntegerA")).sendKeys("123")
+        driver.findElement(By.name("IntegerB")).sendKeys("456")
+        driver.findElement(By.name("ComputeSumButton")).click()
+        assert(driver.findElement(By.name("Answer")).text == "579")
     }
 
     @AfterMethod
