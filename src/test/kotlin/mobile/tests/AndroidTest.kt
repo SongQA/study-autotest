@@ -1,7 +1,5 @@
 package mobile.tests
 
-import io.appium.java_client.AppiumBy
-import mobile.DriverManager.getDriver
 import mobile.TestBase
 import mobile.views.AndroidAppView.assertLeftTitleText
 import mobile.views.AndroidAppView.assertRightTitleText
