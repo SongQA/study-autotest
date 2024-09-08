@@ -1,7 +1,8 @@
 package mobile
 
-import mobile.DriverManager.createDriver
-import mobile.DriverManager.quitDriver
+import mobile.driver.DriverManager
+import mobile.driver.DriverManager.createDriver
+import mobile.driver.DriverManager.quitDriver
 import org.testng.annotations.AfterClass
 import org.testng.annotations.BeforeClass
 

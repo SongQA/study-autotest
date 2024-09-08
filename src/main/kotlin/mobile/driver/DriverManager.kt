@@ -1,4 +1,4 @@
-package mobile
+package mobile.driver
 
 import io.appium.java_client.AppiumDriver
 import io.appium.java_client.android.AndroidDriver
@@ -33,7 +33,7 @@ object DriverManager {
             .amend("appium:deviceName", "Pixel 8 Pro API 34")
             .amend("appium:automationName", "UiAutomator2")
             .amend("appium:udid", "emulator-5554")
-            .amend("appium:app", "/Users/eck.song92/Downloads/ApiDemos-debug.apk")
+            .amend("appium:app", "${System.getProperty("user.dir")}/src/main/resources/ApiDemos-debug.apk")
             .amend("appium:ensureWebviewsHavePages", true)
             .amend("appium:nativeWebScreenshot", true)
             .amend("appium:newCommandTimeout", 3600)
@@ -49,7 +49,7 @@ object DriverManager {
             .amend("appium:platformVersion", "17.5")
             .amend("appium:automationName", "XCuiTest")
             .amend("appium:udid", "1F669193-7A3A-401C-8BFE-7101F0DE7471")
-            .amend("appium:app", "/Users/eck.song92/Downloads/TestApp.app")
+            .amend("appium:app", "${System.getProperty("user.dir")}/src/main/resources/TestApp.app")
             .amend("appium:includeSafariInWebviews", true)
             .amend("appium:newCommandTimeout", 3600)
             .amend("appium:connectHardwareKeyboard", true)

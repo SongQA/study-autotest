@@ -2,7 +2,7 @@ package mobile.views
 
 import io.appium.java_client.AppiumBy
 import mobile.ActionUtil
-import mobile.DriverManager.getDriver
+import mobile.driver.DriverManager.getDriver
 import mobile.WaitUtil
 
 
