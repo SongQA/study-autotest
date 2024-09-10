@@ -1,6 +1,6 @@
 package mobile.tests
 
-import mobile.TestBase
+import mobile.base.TestBase
 import mobile.views.IOSAppView.assertSumResult
 import mobile.views.IOSAppView.tapComputeSumButton
 import mobile.views.IOSAppView.typeIntegerA

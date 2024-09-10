@@ -11,7 +11,7 @@ object DriverOption {
             setPlatformVersion("14.0")
             setDeviceName("Pixel 8 Pro API 34")
             setUdid("emulator-5554")
-            setApp("src/main/resources/ApiDemos-debug.apk")
+            setApp("${System.getProperty("user.dir")}/src/main/resources/ApiDemos-debug.apk")
             setEnsureWebviewsHavePages(true)
             setNativeWebScreenshot(true)
             setNewCommandTimeout(Duration.ofMillis(3600))
@@ -23,7 +23,7 @@ object DriverOption {
         return XCUITestOptions().apply {
             setPlatformVersion("17.5")
             setUdid("1F669193-7A3A-401C-8BFE-7101F0DE7471")
-            setApp("src/main/resources/TestApp.app")
+            setApp("${System.getProperty("user.dir")}/src/main/resources/TestApp.app")
             setIncludeSafariInWebviews(true)
             setNewCommandTimeout(Duration.ofMillis(3600))
             setCapability("connectHardwareKeyboard", false)
