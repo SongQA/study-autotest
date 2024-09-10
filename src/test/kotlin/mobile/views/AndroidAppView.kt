@@ -1,12 +1,14 @@
 package mobile.views
 
 import io.appium.java_client.AppiumBy
-import mobile.ActionUtil
+import mobile.base.BaseView
 import mobile.driver.DriverManager.getDriver
-import mobile.WaitUtil
 
-object AndroidAppView : ActionUtil, WaitUtil {
+object AndroidAppView : BaseView {
 
+    override fun waitUntilOpenView() {
+        TODO("Not yet implemented")
+    }
 
     fun tapApp() {
         val appElement = getDriver().findElement(AppiumBy.xpath("//*[@text='App']"))

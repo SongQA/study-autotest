@@ -1,4 +1,4 @@
-package mobile
+package mobile.utilities
 
 import mobile.driver.DriverManager.getDriver
 import org.openqa.selenium.WebElement

@@ -3,7 +3,9 @@ package mobile.driver
 import io.appium.java_client.AppiumDriver
 import io.appium.java_client.android.AndroidDriver
 import io.appium.java_client.ios.IOSDriver
-import io.appium.java_client.remote.options.BaseOptions
+import mobile.driver.DriverOption.createAndroidOptions
+import mobile.driver.DriverOption.createIOSOptions
+import mobile.enums.Platform
 import java.net.MalformedURLException
 import java.net.URL
 
@@ -11,50 +13,14 @@ object DriverManager {
 
     private lateinit var driver: AppiumDriver
 
-    enum class Platform {
-        ANDROID, IOS
-    }
-
     // 플랫폼에 따라 드라이버 생성
     fun createDriver(platform: Platform): AppiumDriver {
         driver = when (platform) {
-            Platform.ANDROID -> createAndroidDriver()
-            Platform.IOS -> createIOSDriver()
+            Platform.ANDROID -> AndroidDriver(getUrl(), createAndroidOptions())
+            Platform.IOS ->  IOSDriver(getUrl(), createIOSOptions())
         }
 
         return driver
-    }
-
-    // Android 드라이버 생성
-    private fun createAndroidDriver(): AndroidDriver {
-        val options = BaseOptions()
-            .amend("platformName", "Android")
-            .amend("appium:platformVersion", "14.0")
-            .amend("appium:deviceName", "Pixel 8 Pro API 34")
-            .amend("appium:automationName", "UiAutomator2")
-            .amend("appium:udid", "emulator-5554")
-            .amend("appium:app", "${System.getProperty("user.dir")}/src/main/resources/ApiDemos-debug.apk")
-            .amend("appium:ensureWebviewsHavePages", true)
-            .amend("appium:nativeWebScreenshot", true)
-            .amend("appium:newCommandTimeout", 3600)
-            .amend("appium:connectHardwareKeyboard", true)
-
-        return AndroidDriver(getUrl(), options)
-    }
-
-    // iOS 드라이버 생성
-    private fun createIOSDriver(): IOSDriver {
-        val options = BaseOptions()
-            .amend("platformName", "iOS")
-            .amend("appium:platformVersion", "17.5")
-            .amend("appium:automationName", "XCuiTest")
-            .amend("appium:udid", "1F669193-7A3A-401C-8BFE-7101F0DE7471")
-            .amend("appium:app", "${System.getProperty("user.dir")}/src/main/resources/TestApp.app")
-            .amend("appium:includeSafariInWebviews", true)
-            .amend("appium:newCommandTimeout", 3600)
-            .amend("appium:connectHardwareKeyboard", true)
-
-        return IOSDriver(getUrl(), options)
     }
 
     // 드라이버 가져오기

@@ -1,6 +1,6 @@
 package mobile.tests
 
-import mobile.TestBase
+import mobile.base.TestBase
 import mobile.views.AndroidAppView.assertLeftTitleText
 import mobile.views.AndroidAppView.assertRightTitleText
 import mobile.views.AndroidAppView.tapActivity

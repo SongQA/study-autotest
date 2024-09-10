@@ -1,12 +1,15 @@
 package mobile.views
 
 import io.appium.java_client.AppiumBy
-import mobile.ActionUtil
+import mobile.base.BaseView
 import mobile.driver.DriverManager.getDriver
-import mobile.WaitUtil
 
 
-object IOSAppView : ActionUtil, WaitUtil {
+object IOSAppView : BaseView {
+
+    override fun waitUntilOpenView() {
+        TODO("Not yet implemented")
+    }
 
     fun typeIntegerA(text: String) {
         val integerAElement = getDriver().findElement(AppiumBy.id("IntegerA"))

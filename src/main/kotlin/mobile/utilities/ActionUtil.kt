@@ -1,8 +1,8 @@
-package mobile
+package mobile.utilities
 
 import org.openqa.selenium.WebElement
 
-interface ActionUtil {
+interface ActionUtil : WaitUtil {
 
     fun tapElement(element: WebElement) {
         element.click()
