@@ -30,9 +30,6 @@ tasks.register('testMinAndMaxWithXml', Test) {
 }
 
 tasks.register('runAndroidE2ETest', Test) {
-    doFirst {
-        systemProperty 'platform', 'android'
-    }
     useTestNG {
         suites 'src/test/resources/test-android.xml'
     }
@@ -50,9 +47,6 @@ tasks.register('runAndroidE2ETest', Test) {
 }
 
 tasks.register('runIOSE2ETest', Test) {
-    doFirst {
-        systemProperty 'platform', 'ios'
-    }
     useTestNG {
         suites 'src/test/resources/test-ios.xml'
     }
