@@ -3,7 +3,7 @@
     <parameter name="platform" value="android"/>
     <test name="AndroidTest">
         <classes>
-            <class name="mobile.tests.AndroidTest"/>
+            <class name="mobile.tests.MainScreenTest"/>
         </classes>
     </test>
 </suite>
