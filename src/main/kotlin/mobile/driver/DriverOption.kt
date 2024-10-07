@@ -16,6 +16,7 @@ object DriverOption {
             setNativeWebScreenshot(true)
             setNewCommandTimeout(Duration.ofMillis(3600))
             setCapability("connectHardwareKeyboard", false)
+            setCapability("disableIdLocatorAutocompletion", true)
         }
     }
 

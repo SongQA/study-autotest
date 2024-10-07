@@ -4,6 +4,7 @@
     <test name="IOSTest">
         <classes>
             <class name="mobile.tests.MainScreenTest"/>
+            <class name="mobile.tests.ClickActionTest"/>
         </classes>
     </test>
 </suite>

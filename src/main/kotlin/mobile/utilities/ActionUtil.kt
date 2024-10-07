@@ -12,7 +12,51 @@ interface ActionUtil : WaitUtil {
     /**
      * Tap Action
      */
-    fun tap(element: WebElement, duration: Long = 0) {
+    fun tap(element: WebElement) {
+        val finger = PointerInput(PointerInput.Kind.TOUCH, "finger")
+        val tapSequence = Sequence(finger, 0)
+
+        val location = element.location
+        val size = element.size
+        val centerX = location.x + size.width / 2
+        val centerY = location.y + size.height / 2
+
+        tapSequence.addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), centerX, centerY))
+        tapSequence.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
+        tapSequence.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()))
+
+        DriverManager.getDriver().perform(listOf(tapSequence))
+        println("Tap element: $element")
+    }
+
+    fun doubleTap(element: WebElement) {
+        val finger = PointerInput(PointerInput.Kind.TOUCH, "finger")
+        val tapSequence = Sequence(finger, 0)
+
+        val location = element.location
+        val size = element.size
+        val centerX = location.x + size.width / 2
+        val centerY = location.y + size.height / 2
+
+        tapSequence.addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), centerX, centerY))
+        tapSequence.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
+        tapSequence.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()))
+
+        tapSequence.addAction(finger.createPointerMove(Duration.ofMillis(100), PointerInput.Origin.viewport(), centerX, centerY))
+        tapSequence.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
+        tapSequence.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()))
+
+        try {
+            DriverManager.getDriver().perform(listOf(tapSequence))
+            println("Double tap element: $element")
+        } catch (e: Exception) {
+            println("Double tap failed: $element")
+        }
+        println("Tap element: $element")
+    }
+
+    fun longTap(element: WebElement, duration: Long) {
+
         val finger = PointerInput(PointerInput.Kind.TOUCH, "finger")
         val tapSequence = Sequence(finger, 0)
 
@@ -28,14 +72,6 @@ interface ActionUtil : WaitUtil {
 
         DriverManager.getDriver().perform(listOf(tapSequence))
         println("Tap element: $element")
-    }
-
-    fun doubleTap(element: WebElement) {
-        repeat(2) { tap(element) }
-    }
-
-    fun longTap(element: WebElement, duration: Long) {
-        tap(element, duration)
     }
 
     fun type(element: WebElement, text: String) {

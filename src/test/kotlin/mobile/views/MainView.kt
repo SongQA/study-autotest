@@ -3,6 +3,9 @@ package mobile.views
 import io.appium.java_client.pagefactory.AndroidFindBy
 import io.appium.java_client.pagefactory.iOSXCUITFindBy
 import mobile.base.BaseView
+import mobile.common.ErrorMessages
+import org.hamcrest.CoreMatchers.equalTo
+import org.hamcrest.MatcherAssert.assertThat
 import org.openqa.selenium.WebElement
 
 object MainView : BaseView {
@@ -30,7 +33,7 @@ object MainView : BaseView {
     @iOSXCUITFindBy(xpath = "//*[@name='Waiting and Loading Test']")
     private lateinit var WaitingScreenButton: WebElement
 
-    @AndroidFindBy(xpath = "//*[@text='Screen Rotation Test]")
+    @AndroidFindBy(xpath = "//*[@text='Screen Rotation Test']")
     @iOSXCUITFindBy(xpath = "//*[@name='Screen Rotation Test']")
     private lateinit var RotationScreenButton: WebElement
 
@@ -44,7 +47,7 @@ object MainView : BaseView {
     
 
     override fun isViewLoaded(): Boolean {
-        return waitForElementVisible(viewTitle)
+        return waitForElementVisible(viewTitle, clickScreenButton)
     }
 
     override fun getViewTitle(): String {
@@ -81,5 +84,61 @@ object MainView : BaseView {
 
     fun tapModalScreenButton() {
         tap(ModalScreenButton)
+    }
+
+    fun checkIfClickActionTestButtonIsVisible() {
+        assertThat(
+            ErrorMessages.Element.NOT_DISPLAY,
+            clickScreenButton.isDisplayed,
+            equalTo(true)
+        )
+    }
+
+    fun  checkIfTextInputScreenButtonIsVisible() {
+        assertThat(
+            ErrorMessages.Element.NOT_DISPLAY,
+            TextInputScreenButton.isDisplayed,
+            equalTo(true)
+        )
+    }
+
+    fun checkIfScrollScreenButtonIsVisible() {
+        assertThat(
+            ErrorMessages.Element.NOT_DISPLAY,
+            ScrollScreenButton.isDisplayed,
+            equalTo(true)
+        )
+    }
+
+    fun checkIfWaitingScreenButtonIsVisible() {
+        assertThat(
+            ErrorMessages.Element.NOT_DISPLAY,
+            WaitingScreenButton.isDisplayed,
+            equalTo(true)
+        )
+    }
+
+    fun checkIfRotationScreenButtonIsVisible() {
+        assertThat(
+            ErrorMessages.Element.NOT_DISPLAY,
+            RotationScreenButton.isDisplayed,
+            equalTo(true)
+        )
+    }
+
+    fun checkIfDragAndDropScreenButtonIsVisible() {
+        assertThat(
+            ErrorMessages.Element.NOT_DISPLAY,
+            DragAndDropScreenButton.isDisplayed,
+            equalTo(true)
+        )
+    }
+
+    fun checkIfModalScreenButtonIsVisible() {
+        assertThat(
+            ErrorMessages.Element.NOT_DISPLAY,
+            ModalScreenButton.isDisplayed,
+            equalTo(true)
+        )
     }
 }

@@ -7,8 +7,17 @@ import org.testng.annotations.Test
 class MainScreenTest : TestBase() {
 
     @Test
-    fun test_enter_click_screen() {
-        assert(MainView.isViewLoaded())
-        MainView.tapClickScreenButton()
+    fun test_01() {
+        with(MainView) {
+            isViewLoaded()
+
+            checkIfClickActionTestButtonIsVisible()
+            checkIfTextInputScreenButtonIsVisible()
+            checkIfScrollScreenButtonIsVisible()
+            checkIfWaitingScreenButtonIsVisible()
+            checkIfRotationScreenButtonIsVisible()
+            checkIfDragAndDropScreenButtonIsVisible()
+            checkIfModalScreenButtonIsVisible()
+        }
     }
 }

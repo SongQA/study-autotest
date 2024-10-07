@@ -10,6 +10,7 @@ dependencies {
     implementation 'org.jetbrains.kotlin:kotlin-test'
     implementation 'org.testng:testng:7.8.0'
     implementation 'io.appium:java-client:8.6.0'
+    testImplementation 'org.hamcrest:hamcrest:2.2'
 }
 
 tasks.register('testMinAndMaxWithXml', Test) {

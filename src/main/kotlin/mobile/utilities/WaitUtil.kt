@@ -38,7 +38,12 @@ interface WaitUtil {
             as AppiumFluentWait<AppiumDriver>
     }
 
-    fun waitForElementVisible(element: WebElement, waitTime: Int = WaitTime.WAIT_DEFAULT): Boolean {
-        return wait(waitTime).until { element.isDisplayed }
+    fun waitForElementVisible( vararg element: WebElement, waitTime: Int = WaitTime.WAIT_DEFAULT): Boolean {
+        return wait(waitTime).until {
+            element.all {
+                println("Wait element: $it")
+                it.isDisplayed
+            }
+        }
     }
 }
