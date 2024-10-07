@@ -10,9 +10,14 @@ import org.testng.annotations.Parameters
 
 open class TestBase {
 
+    companion object {
+        lateinit var testPlatform: String
+    }
+
     @BeforeTest(alwaysRun = true)
     @Parameters("platform")
     fun setUp(platform: String) {
+        testPlatform = platform.lowercase()
         setDriver(platform)
     }
 

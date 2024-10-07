@@ -18,15 +18,68 @@ object MainView : BaseView {
     @iOSXCUITFindBy(xpath = "//*[@name='Click Action Test']")
     private lateinit var clickScreenButton: WebElement
 
-    override fun isPageLoaded(): Boolean {
-        TODO("Not yet implemented")
+    @AndroidFindBy(xpath = "//*[@text='Text Input and Editing Test']")
+    @iOSXCUITFindBy(xpath = "//*[@name='Text Input and Editing Test']")
+    private lateinit var TextInputScreenButton: WebElement
+
+    @AndroidFindBy(xpath = "//*[@text='Scroll and Swipe Action Test']")
+    @iOSXCUITFindBy(xpath = "//*[@name='Scroll and Swipe Action Test']")
+    private lateinit var ScrollScreenButton: WebElement
+
+    @AndroidFindBy(xpath = "//*[@text='Waiting and Loading Test']")
+    @iOSXCUITFindBy(xpath = "//*[@name='Waiting and Loading Test']")
+    private lateinit var WaitingScreenButton: WebElement
+
+    @AndroidFindBy(xpath = "//*[@text='Screen Rotation Test]")
+    @iOSXCUITFindBy(xpath = "//*[@name='Screen Rotation Test']")
+    private lateinit var RotationScreenButton: WebElement
+
+    @AndroidFindBy(xpath = "//*[@text='Drag and Drop Test']")
+    @iOSXCUITFindBy(xpath = "//*[@name='Drag and Drop Test']")
+    private lateinit var DragAndDropScreenButton: WebElement
+
+    @AndroidFindBy(xpath = "//*[@text='Modal, Popup, Toast Test']")
+    @iOSXCUITFindBy(xpath = "//*[@name='Modal, Popup, Toast Test']")
+    private lateinit var ModalScreenButton: WebElement
+    
+
+    override fun isViewLoaded(): Boolean {
+        return waitForElementVisible(viewTitle)
     }
 
-    override fun getPageTitle(): String {
+    override fun getViewTitle(): String {
+        return viewTitle.text
+    }
+
+    override fun tapBackButton() {
         TODO("Not yet implemented")
     }
 
     fun tapClickScreenButton() {
         tap(clickScreenButton)
+    }
+
+    fun tapTextInputScreenButton() {
+        tap(TextInputScreenButton)
+    }
+
+    fun tapScrollScreenButton() {
+        tap(ScrollScreenButton)
+    }
+
+    fun tapWaitingScreenButton() {
+        tap(WaitingScreenButton)
+    }
+
+    fun tapRotationScreenButton() {
+        tap(RotationScreenButton)
+    }
+
+    fun tapDragAndDropScreenButton() {
+        tap(DragAndDropScreenButton)
+    }
+
+    fun tapModalScreenButton() {
+        tap(ModalScreenButton)
     }
 }

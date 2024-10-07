@@ -10,7 +10,9 @@ interface BaseView : ActionUtil {
                 PageFactory.initElements(AppiumFieldDecorator(DriverManager.getDriver()), this)
         }
 
-        fun isPageLoaded(): Boolean
+        fun isViewLoaded(): Boolean
 
-        fun getPageTitle(): String
+        fun getViewTitle(): String
+
+        fun tapBackButton()
 }
