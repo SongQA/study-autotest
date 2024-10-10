@@ -3,7 +3,10 @@ package mobile.views
 import io.appium.java_client.pagefactory.AndroidFindBy
 import io.appium.java_client.pagefactory.iOSXCUITFindBy
 import mobile.base.BaseView
+import mobile.base.TestBase.Companion.testPlatform
 import mobile.common.ErrorMessages
+import mobile.data.Platform.ANDROID
+import mobile.data.Platform.IOS
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
 import org.openqa.selenium.WebElement
@@ -144,5 +147,63 @@ object ClickActionTestView : BaseView {
             actualCount,
             equalTo(initialCount)
         )
+    }
+
+    fun tapToggleButton() {
+        tap(toggleButton)
+    }
+
+    private fun getToggleStatus(): String {
+        return toggleStatus.text
+    }
+
+    fun checkIfToggleStatusIsOn() {
+        assertThat(
+            ErrorMessages.Action.CLICK_FAILED,
+            getToggleStatus(),
+            equalTo("ON")
+        )
+    }
+
+    fun checkIfToggleStatusIsOff() {
+        assertThat(
+            ErrorMessages.Action.CLICK_FAILED,
+            getToggleStatus(),
+            equalTo("OFF")
+        )
+    }
+
+    fun tapSwitchButton() {
+        forceTap(switchButton)
+    }
+
+    fun checkIfSwitchStatusIsOn() {
+        when(testPlatform) {
+            ANDROID -> assertThat(
+                ErrorMessages.Action.CLICK_FAILED,
+                switchButton.isSelected,
+                equalTo(true)
+            )
+            IOS -> assertThat(
+                ErrorMessages.Action.CLICK_FAILED,
+                switchButton.getAttribute("value"),
+                equalTo("1")
+            )
+        }
+    }
+
+    fun checkIfSwitchStatusIsOff() {
+        when(testPlatform) {
+            ANDROID -> assertThat(
+                ErrorMessages.Action.CLICK_FAILED,
+                switchButton.isSelected,
+                equalTo(false)
+            )
+            IOS -> assertThat(
+                ErrorMessages.Action.CLICK_FAILED,
+                switchButton.getAttribute("value"),
+                equalTo("0")
+            )
+        }
     }
 }

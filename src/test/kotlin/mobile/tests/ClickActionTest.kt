@@ -3,6 +3,7 @@ package mobile.tests
 import mobile.base.TestBase
 import mobile.views.ClickActionTestView
 import mobile.views.MainView
+import org.testng.annotations.AfterClass
 import org.testng.annotations.BeforeClass
 import org.testng.annotations.Test
 
@@ -17,7 +18,7 @@ class ClickActionTest: TestBase() {
         }
     }
 
-    @Test(description = "Tests if ClickActionTestView is displayed")
+    @Test(priority = 1, description = "Tests if ClickActionTestView is displayed")
     fun test_01() {
         with(ClickActionTestView) {
             isViewLoaded()
@@ -25,7 +26,7 @@ class ClickActionTest: TestBase() {
         }
     }
 
-    @Test(description = "Tests if ClickButton increases the count when clicked")
+    @Test(priority = 2, description = "Tests if ClickButton increases the count when clicked")
     fun test_02() {
         with(ClickActionTestView) {
             val initialCount = getClickCount()
@@ -34,7 +35,7 @@ class ClickActionTest: TestBase() {
         }
     }
 
-    @Test(description = "Tests if DoubleClickButton increases the count when double clicked")
+    @Test(priority = 3, description = "Tests if DoubleClickButton increases the count when double clicked")
     fun test_03() {
         with(ClickActionTestView) {
             var initialCount = getDoubleClickCount()
@@ -47,7 +48,7 @@ class ClickActionTest: TestBase() {
         }
     }
 
-    @Test(description = "Tests if LongClickButton increases the count when long clicked")
+    @Test(priority = 4, description = "Tests if LongClickButton increases the count when long clicked")
     fun test_04() {
         with(ClickActionTestView) {
             var initialCount = getLongClickCount()
@@ -57,6 +58,33 @@ class ClickActionTest: TestBase() {
             initialCount = getLongClickCount()
             longTapLongClickButton()
             checkIfLongClickCountIsIncreased(initialCount, getLongClickCount())
+        }
+    }
+
+    @Test(priority = 5, description = "Tests if ToggleButton turns on and off when clicked")
+    fun test_05() {
+        with(ClickActionTestView) {
+            tapToggleButton()
+            checkIfToggleStatusIsOn()
+            tapToggleButton()
+            checkIfToggleStatusIsOff()
+        }
+    }
+
+    @Test(priority = 6, description = "Tests if SwitchButton turns on and off when clicked")
+    fun test_06() {
+        with(ClickActionTestView) {
+            tapSwitchButton()
+            checkIfSwitchStatusIsOn()
+            tapSwitchButton()
+            checkIfSwitchStatusIsOff()
+        }
+    }
+
+    @AfterClass
+    fun test_teardown() {
+        with(ClickActionTestView) {
+            tapBackButton()
         }
     }
 }
