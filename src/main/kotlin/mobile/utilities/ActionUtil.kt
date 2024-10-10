@@ -29,6 +29,11 @@ interface ActionUtil : WaitUtil {
         println("Tap element: $element")
     }
 
+    fun forceTap(element: WebElement) {
+        element.click()
+        println("Force Tap element: $element")
+    }
+
     fun doubleTap(element: WebElement) {
         val finger = PointerInput(PointerInput.Kind.TOUCH, "finger")
         val tapSequence = Sequence(finger, 0)
@@ -74,8 +79,8 @@ interface ActionUtil : WaitUtil {
         println("Tap element: $element")
     }
 
-    fun type(element: WebElement, text: String) {
-        element.clear()
+    fun type(element: WebElement, text: String, clear: Boolean = true) {
+        if (clear) element.clear()
         element.sendKeys(text)
         println("Typing text: $text to element: $element")
     }

@@ -5,13 +5,10 @@ import io.appium.java_client.AppiumFluentWait
 import io.appium.java_client.AppiumFluentWait.IterationInfo
 import mobile.driver.DriverManager
 import org.openqa.selenium.WebElement
-import org.openqa.selenium.support.ui.FluentWait
 import java.time.Duration
 import java.util.function.Function
-import mobile.base.TestBase.Companion.testPlatform
-import mobile.data.Platform.ANDROID
-import mobile.data.Platform.IOS
 import mobile.data.WaitTime
+import org.openqa.selenium.NoSuchElementException
 import org.openqa.selenium.StaleElementReferenceException
 import org.openqa.selenium.TimeoutException
 
@@ -32,7 +29,6 @@ interface WaitUtil {
                     StaleElementReferenceException::class.java,
                     NoSuchElementException::class.java,
                     TimeoutException::class.java,
-                    java.util.concurrent.TimeoutException::class.java
                 )
             )
             as AppiumFluentWait<AppiumDriver>
@@ -45,5 +41,9 @@ interface WaitUtil {
                 it.isDisplayed
             }
         }
+    }
+
+    fun waitForSpecificTime(waitTime: Int = WaitTime.WAIT_DEFAULT) {
+        Thread.sleep(waitTime.toLong())
     }
 }
