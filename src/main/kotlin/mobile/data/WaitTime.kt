@@ -1,6 +1,7 @@
 package mobile.data
 
 object WaitTime {
+    const val WAIT_RETRY = 500
     const val WAIT_DEFAULT = 7
     const val WAIT_SHORT = 5
     const val WAIT_MEDIUM = 10

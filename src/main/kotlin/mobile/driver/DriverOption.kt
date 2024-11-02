@@ -23,7 +23,7 @@ object DriverOption {
     fun setIOSOptions(): XCUITestOptions {
         return XCUITestOptions().apply {
             setPlatformVersion("17.5")
-            setUdid("1F669193-7A3A-401C-8BFE-7101F0DE7471")
+            setUdid("FECC038C-D475-4467-B3AC-39221CEBE2C6")
             setApp("${System.getProperty("user.dir")}/src/main/resources/VeriNative.app")
             setIncludeSafariInWebviews(true)
             setNewCommandTimeout(Duration.ofMillis(3600))

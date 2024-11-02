@@ -28,22 +28,46 @@ interface WaitUtil {
                 listOf(
                     StaleElementReferenceException::class.java,
                     NoSuchElementException::class.java,
-                    TimeoutException::class.java,
                 )
             )
             as AppiumFluentWait<AppiumDriver>
     }
 
     fun waitForElementVisible( vararg element: WebElement, waitTime: Int = WaitTime.WAIT_DEFAULT): Boolean {
-        return wait(waitTime).until {
-            element.all {
-                println("Wait element: $it")
-                it.isDisplayed
+        var result = false
+
+        try {
+            result = wait(waitTime).until {
+                element.all {
+                    println("Wait Element Until Appear: $it")
+                    it.isDisplayed
+                }
             }
+        } catch (e: TimeoutException) {
+            result = false
         }
+
+        return result
     }
 
-    fun waitForSpecificTime(waitTime: Int = WaitTime.WAIT_DEFAULT) {
-        Thread.sleep(waitTime.toLong())
+    fun waitForElementNotVisible( vararg element: WebElement, waitTime: Int = WaitTime.WAIT_DEFAULT): Boolean {
+        var result = false
+
+        run repeatBlock@ {
+            repeat(10) {
+                try {
+                    element.all {
+                        println("Wait Element Until Disappear: $it")
+                        it.isDisplayed
+                    }
+                } catch (e: Exception) {
+                    result = true
+                    return@repeatBlock
+                }
+                Thread.sleep(WaitTime.WAIT_RETRY.toLong())
+            }
+        }
+
+        return result
     }
 }

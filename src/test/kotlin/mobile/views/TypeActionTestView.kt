@@ -44,7 +44,11 @@ object TypeActionTestView : BaseView {
 
     @AndroidFindBy(id = "toggleNameInput")
     @iOSXCUITFindBy(accessibility = "toggleNameInput")
-    private lateinit var toggleNameInputEnableButton: String
+    private lateinit var toggleNameInputEnableButton: WebElement
+
+    @AndroidFindBy(id = "nameFieldError")
+    @iOSXCUITFindBy(accessibility = "nameFieldError")
+    private lateinit var nameFieldError: WebElement
 
     override fun isViewLoaded(): Boolean {
         return waitForElementVisible(viewTitle, englishInputField)
@@ -73,8 +77,8 @@ object TypeActionTestView : BaseView {
     fun checkIfEnglishFieldErrorIsNotVisible() {
         assertThat(
             ErrorMessages.Element.DISPLAY,
-            waitForElementVisible(englishFieldError),
-            equalTo(false)
+            waitForElementNotVisible(englishFieldError),
+            equalTo(true)
         )
 
         assertThat(
@@ -83,4 +87,77 @@ object TypeActionTestView : BaseView {
             equalTo(true)
         )
     }
+
+    fun typePasswordInputField(text: String) {
+        type(passwordInputField, text)
+    }
+
+    fun tapTogglePasswordVisibilityButton() {
+        tap(togglePasswordVisibilityButton)
+    }
+
+   fun checkIfPasswordTextIsHide(text: String) {
+        assertThat(
+            ErrorMessages.Element.NOT_DISPLAY,
+            passwordInputField.text,
+            equalTo("•".repeat(text.length))
+        )
+    }
+
+    fun checkIfPasswordTextIsVisible(text: String) {
+        assertThat(
+            ErrorMessages.Element.DISPLAY,
+            passwordInputField.text,
+            equalTo(text)
+        )
+    }
+
+    fun typeNameInputField(text: String) {
+        type(nameInput, text)
+    }
+
+    fun checkIfNameTextIsVisible(text: String) {
+        assertThat(
+            ErrorMessages.Element.DISPLAY,
+            nameInput.text,
+            equalTo(text)
+        )
+    }
+
+    fun tapToggleNameInputEnableButton() {
+        tap(toggleNameInputEnableButton)
+    }
+
+    fun checkIfNameFieldIsEnabled() {
+        assertThat(
+            ErrorMessages.Element.DISPLAY,
+            nameInput.isEnabled,
+            equalTo(true)
+        )
+    }
+
+    fun checkIfNameFieldIsDisabled() {
+        assertThat(
+            ErrorMessages.Element.DISPLAY,
+            nameInput.isEnabled,
+            equalTo(false)
+        )
+    }
+
+    fun checkIfNameInputFieldMaxLengthIsTen() {
+        assertThat(
+            ErrorMessages.Element.DISPLAY,
+            nameInput.text.length,
+            equalTo(10)
+        )
+
+        assertThat(
+            ErrorMessages.Element.NOT_DISPLAY,
+            waitForElementVisible(nameFieldError),
+            equalTo(true)
+        )
+    }
+
+
+
 }
